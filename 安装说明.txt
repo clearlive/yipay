@@ -1,0 +1,35 @@
+
+
+建议安装环境:
+
+ PHP5.4+MYSQL+APACHE(PHP5.4以下会出现错误.)
+
+安装步骤:
+
+1.导入根目录下的pay.sql
+
+2.修改Config目录中的Conn.php数据库配置文件.
+
+3.后台地址:webadmin
+
+  用户名:aspku  密码:aspku
+
+4.进入后台系统设置,设置邮箱及短信.短信为阿里云的接口.
+
+  其他信息请自行配置.
+
+5.测试支付接口.是在 demo目录,
+
+  路径\demo\php\config\config.php,修改其中的
+
+	$apiurl='http://www.bz52.cn/pay/api.php';//网关地址
+	
+	$checkurl='http://www.bz52.cn/pay/order.php';//查单地址
+
+www.bz52.cn 改为你当前部署程序的网址.
+
+
+6. 代理登陆地址: 域名/agent
+
+
+7. 如需自己增加接口,需要加接口文件放到gateway目录,然后在后台添加通道.

@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html ng-app="moduleApp">
+<head>
+    <base href="/">
+    <meta charset="UTF-8">
+    <title>聚合支付平台</title>
+    <meta name="viewport" content="width=device-width,height=device-height,inital-scale=1.0,maximum-scale=1.0,user-scalable=no;">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="format-detection" content="telephone=no">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="renderer" content="webkit">
+    <link rel="stylesheet" href="public/components/bootstrap/dist/css/bootstrap.css?v=e9f7fbe732">
+    <link rel="stylesheet" href="public/components/bootstrap/dist/css/bootstrap-datetimepicker.min.css?v=fa0a2cb4d6">
+    <!--<link rel="stylesheet" href="css/jquery.fullpage.css?v=01e56b9db9">-->
+    <link rel="stylesheet" href="css/jquery.datetimepicker.css?v=b805db3bb4">
+    <link rel="stylesheet" href="css/common.min.css?v=e572ee527d">
+    <!--<link rel="stylesheet" href="css/common.css?v=58e750717f">-->
+    <!--<link rel="stylesheet" href="css/style.css?v=9b80c55e0f">-->
+    <!--<link rel="stylesheet" href="css/viewer.css?v=c6163a968e">-->
+    <link rel="icon" href="image/favicon.ico" mce_href="image/favicon.ico" type="image/x-icon">
+    <link rel="shortcut icon" href="image/favicon.ico" mce_href="image/favicon.ico" type="image/x-icon">
+    <script src="public/components/jquery/dist/jquery.min.js?v=64ec1b9cff"></script>
+    <script src="public/components/jquery/dist/jquery.upload2.js?v=d4c20b8fb4"></script>
+    <script src="public/components/jquery/dist/jquery.jqprint-0.3.js?v=b9a1a1c4f2"></script>
+    <script src="public/components/angular/angular.min.js?v=6902fa79ea"></script>
+    <script src="public/components/angular/angular-animate.js?v=8ae302ffa0"></script>
+    <script src="public/components/angular/angular.pagination.js?v=363c08b621"></script>
+    <script src="public/components/angular/angular.pagination.ali.js?v=32b53650c7"></script>
+    <script src="public/components/angular/angular-ui-router.js?v=835626abd5"></script>
+    <script src="public/components/angular/ocLazyLoad.min.js?v=0ed201951d"></script>
+    <script src="public/components/angular/angular-file-upload.js?v=bb1163b135"></script>
+    <script src="public/components/angular/highcharts.js?v=59c79c59e5"></script>
+    <script src="public/components/angular/highcharts-ng.js?v=80d581bce6"></script>
+    <script src="public/components/angular/angular-sanitize.min.js?v=c607f6d1f2"></script>
+    <script src="public/components/bootstrap/dist/js/bootstrap.min.js?v=04c84852e9"></script>
+    <script src="public/components/bootstrap/dist/js/bootstrap-datetimepicker.js?v=e273734e21"></script>
+    <script src="public/components/bootstrap/dist/js/bootstrap-datetimepicker.zh-CN.js?v=06217835bc"></script>
+    <script src="js/md5.js?v=ee3a962f93"></script>
+    <script src=public/components/jquery/dist/viewer.js?v=0f1871573a></script>
+    <!--指令js合并-->
+    <script src="js/directive/mainDirective.js?v=0fa8b95733"></script>
+    <!--指令js合并-->
+    <script src="js/directive/mchInfo.js?v=dcd800948c"></script>
+    <!--模态框指令-->
+    <!--<script src="js/directive/tip.js?v=7346dcc466"></script>-->
+    <!--协议框指令-->
+    <!--<script src="js/directive/agreement.js?v=381a0eaae1"></script>-->
+    <!--登录框指令-->
+    <!--<script src="js/directive/entry.js?v=78979e1c58"></script>-->
+    <!--时间插件指令-->
+    <!--<script src="js/directive/datatime.js?v=10287a91a3"></script>-->
+    <!--input框指令-->
+    <!--<script src="js/directive/input.js?v=944f79c1b0"></script>-->
+    <!--文档中心侧边栏指令-->
+    <!--<script src="js/directive/docSide.js?v=d726273aea"></script>-->
+    <!--获取省市信息的factory-->
+    <script src="js/factory/factory.js?v=c5282ed1a0"></script>
+    <!--检查是否在登录之外的页面-->
+    <script src="js/filter/filter.js?v=715362c55c"></script>
+    <!--路径-->
+    <script src="js/route/router.js?v=28ecd47ecf"></script>
+    <!--<link rel="stylesheet" href="css/develop/develop.css?v=16239181e0">-->
+    <!--[if IE 9]> <html class="ie9" lang="zh-CN"> <![endif]-->
+    <script type="text/javascript">
+        var _hmt = _hmt || [];
+        (function() {
+            var hm = document.createElement("script");
+            hm.src = "https://hm.baidu.com/hm.js?c4a541c62b4195e6324adc9bd0da96a0";
+            var s = document.getElementsByTagName("script")[0];
+            s.parentNode.insertBefore(hm, s);
+        })();
+     </script>
+    <script type="text/javascript">
+        var browser=navigator.appName
+
+        var b_version=navigator.appVersion
+
+        var version=b_version.split(";");
+
+        var trim_Version=version[1].replace(/[ ]/g,"");
+
+        if(browser=="Microsoft Internet Explorer" && (trim_Version=="MSIE7.0"||trim_Version=="MSIE6.0"||trim_Version=="MSIE8.0"))
+        {
+            alert("浏览器版本过低,建议升级到IE8以上版本浏览器")
+        }
+    </script>
+</head>
+<body ng-controller="myApp">
+    <div class="loading ng-cloak" ng-cloak  ng-show="busy">
+         <img src="image/loading.gif" class="loading-img">
+    </div>
+    <div class="download-btn-container ng-cloak" ng-cloak ng-show="downloads">
+        <div class="download-btn" ng-click="showDownloadClick()"></div>
+        <div class="download-tip-div">任务文件已加入<br/>点击查看下载进度</div>
+    </div>
+    <div class="modal animate-show-hide ng-cloak" ng-cloak  ng-show="showDownloadContent">
+        <div class="modal-dialog download-model-content">
+            <div class="modal-content">
+                <form class="form-horizontal role_add_form" name="roleAddForm">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal"
+                                ng-click="hideDownloadContent()"   aria-hidden="true">
+                        </button>
+                        <h4 class="modal-title text-center" id="myModalLabel">
+                             下载管理中心
+                        </h4>
+                    </div>
+                    <div class="modal-body">
+
+                        <div class="common-input-row">
+                            <div class="col-md-3 common-input-group">
+                                <label class="common-label">文件状态</label>
+                                <select ng-model="down.stat" class="form-control common-input" common-input name="stat" ng-change="searchFileStatClick()">
+                                    <option value=""></option>
+                                    <option value="1">正在下载</option>
+                                    <option value="2">下载完成</option>
+                                    <option value="3">下载失败</option>
+                                    <option value="4">取消下载</option>
+                                </select>
+                            </div>
+                            <div class="download-tip-title">文件下载成功后，系统保存7天，请在7天内保存下载数据</div>
+                        </div>
+                        <div class="row download-table-container">
+                            <div class="col-md-12 common-scroll download-table-inner">
+                                <table class="table table-striped">
+                                    <thead>
+                                    <tr>
+                                        <th>任务时间</th>
+                                        <th>任务栏目</th>
+                                        <th>任务名称</th>
+                                        <th>下载进度</th>
+                                        <th>操作</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                       <tr ng-show="emptyDataDownload">
+                                           <td colspan="5" class="text-center empty-data-td">暂无数据</td>
+                                       </tr>
+                                       <tr ng-repeat="item in downloadData" ng-show="!emptyDataDownload">
+                                           <td>{{item.startTime}}</td>
+                                           <td>{{item.taskChannel}}</td>
+                                           <td>{{item.name}}</td>
+                                           <td ng-class="{'redFont':(item.stat=='下载失败')}" >{{item.stat}}</td>
+                                           <td><button ng-if="(item.stat=='下载完成')" ng-click="downLoadFile(item.id)"  class="common-table-btn-blue common-table-btn-blue-big"><span class="download-succ-icon"></span>保存到本地</button>
+                                               <button ng-if="(item.stat=='正在下载')"  ng-click="cancelLoadFile(item.id)"   class="common-table-btn-blue common-table-btn-blue-big"><span class="download-cancel-icon"></span>取消下载</button>
+                                              <!-- <button ng-if="(item.stat=='下载失败')"   class="common-table-btn-blue common-table-btn-blue-big"><span class="download-again-icon"></span>重新下载</button>-->
+                                               <button class="common-table-btn-blue" ng-click="deleteLoadFile(item.id)" ><span class="download-delete-icon"></span>删除</button>
+                                           </td>
+                                       </tr>
+                                    </tbody>
+                                </table>
+                                <pagination conf="paginationDownloadConf"></pagination>
+                            </div>
+
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button"  class="btn common-lgBtn-blue center-block" ng-click="hideDownloadContent()" >
+                            关闭
+                        </button>
+                    </div>
+                </form>
+            </div><!-- /.modal-content -->
+        </div>
+    </div>
+    <tip conf="downDeleteTipConf" class="delete-content" ng-show="downDeleteTipConf.showTipContent"></tip>
+    <tip conf="downTipConf"  ng-show="downTipConf.showTipContent"></tip>
+
+<div ui-view="" class="outer-content" id="main_content"></div>
+ <back-to-top id="backtotop"><div class="bttbg"></div></back-to-top>
+    <!--未登录时的主导航-->
+<!--<script src="js/controller/topMenu.js?v=1392464704"></script>-->
+<!--主导航-->
+<script src="js/controller/mainMenu.js?v=d3dce8277f"></script>
+<script src="js/controller/index.js?v=4a6b945464"></script>
+
+</body>
+</html>
